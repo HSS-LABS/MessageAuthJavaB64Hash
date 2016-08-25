@@ -15,12 +15,12 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
-class DesEncrypter {
+public class DesEncrypter {
   Cipher ecipher;
   Cipher dcipher;
   private String base64Hash;
   
-  DesEncrypter(){
+  public DesEncrypter(){
   }
 
 
