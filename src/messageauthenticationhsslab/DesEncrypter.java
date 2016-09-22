@@ -32,8 +32,8 @@ public class DesEncrypter {
     byte[] enc = ecipher.doFinal(utf8);
     // Set hash to be retrieved later
     String encString  = new sun.misc.BASE64Encoder().encode(enc);
-    base64Hash = Base64.getEncoder().encodeToString(encString.getBytes());
-    System.out.println(Base64.getEncoder().encodeToString(encString.getBytes()));
+    base64Hash = Base64.getEncoder().encodeToString(str.getBytes());
+    System.out.println(Base64.getEncoder().encodeToString(str.getBytes()));
     System.out.println(base64Hash);
     // Encode bytes to base64 to get a string
     return encString;
@@ -43,15 +43,19 @@ public class DesEncrypter {
       return base64Hash;
   }
   
-  public void validateBase64(String plainText, String base64HashString) {
+  public boolean validateBase64(String plainText, String base64HashString) {
       String compareBase64Hash = Base64.getEncoder().encodeToString
         (plainText.getBytes());
       System.out.println("Original hash : "+base64HashString);
       System.out.println("Generated hash : "+compareBase64Hash);
       if (compareBase64Hash.equals(base64HashString))
+      {
           System.out.println("Message is not Tampered With");
+          return true;
+      }
       else
           System.out.println("Message was Tampered With");
+      return false;
   }
 
   public String decrypt(String str) throws Exception {

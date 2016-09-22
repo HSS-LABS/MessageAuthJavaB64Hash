@@ -168,6 +168,7 @@ public class Gui extends javax.swing.JFrame {
     private void encryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("encode button pressed");
+        tamperedLabel.setText("Tampered : Unknown");
         plainString = textArea.getText();
         keyString = keyField.getText();
         try {
@@ -197,7 +198,15 @@ public class Gui extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("open button button pressed");
         encrypter.getBase64Hash();
-        encrypter.validateBase64(textArea.getText(), hexField.getText());
+        plainString  = textArea.getText();
+        if(encrypter.validateBase64(plainString, hexField.getText()))
+        {
+            tamperedLabel.setText("Tampered : False");
+        }
+        else 
+        {
+            tamperedLabel.setText("Tampered : True");
+        }
     }//GEN-LAST:event_tamperCheckButtonActionPerformed
 
     private void keyFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keyFieldActionPerformed
@@ -212,6 +221,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void decryptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decryptButtonActionPerformed
         // TODO add your handling code here:
+        tamperedLabel.setText("Tampered : Unknown");
         System.out.println("Decrypt button pressed");
         
         try {
